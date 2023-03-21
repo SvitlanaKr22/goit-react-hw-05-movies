@@ -2,10 +2,10 @@ import { useState, useEffect } from 'react';
 import {
   fetchTrending,
   // fetchSearch,
-  // fetchDetails,
   // fetchCredits,
   // fetchReviews,
 } from 'services/fetchDateAboutMovies';
+import MoviesList from 'components/MoviesList/Movieslist';
 
 const Home = () => {
   const [titlesMovie, setTitlesMovie] = useState([]);
@@ -13,7 +13,6 @@ const Home = () => {
   useEffect(() => {
     fetchTrending('movie', 'day')
       .then(data => {
-        console.log(data.results);
         setTitlesMovie([
           ...data.results.map(({ id, title }) => ({
             id,
@@ -27,10 +26,6 @@ const Home = () => {
     //   .then(data => console.log(data))
     //   .catch(error => console.error(error));
 
-    // fetchDetails(881164)
-    //   .then(data => console.log(data))
-    //   .catch(error => console.error(error));
-
     // fetchCredits(881164)
     //   .then(data => console.log(data))
     //   .catch(error => console.error(error));
@@ -40,11 +35,10 @@ const Home = () => {
     //   .catch(error => console.error(error));
   }, []);
 
-  console.log(titlesMovie);
-
   return (
     <main>
-      <h1>Welcome</h1>
+      <h1>Trending today</h1>
+      <MoviesList arrMovies={titlesMovie} />
     </main>
   );
 };
