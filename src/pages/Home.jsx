@@ -1,10 +1,5 @@
 import { useState, useEffect } from 'react';
-import {
-  fetchTrending,
-  // fetchSearch,
-  // fetchCredits,
-  // fetchReviews,
-} from 'services/fetchDateAboutMovies';
+import { fetchTrending } from 'services/fetchDateAboutMovies';
 import MoviesList from 'components/MoviesList/Movieslist';
 
 const Home = () => {
@@ -21,18 +16,6 @@ const Home = () => {
         ]);
       })
       .catch(error => console.log(error));
-
-    // fetchSearch('Boston Strangler')
-    //   .then(data => console.log(data))
-    //   .catch(error => console.error(error));
-
-    // fetchCredits(881164)
-    //   .then(data => console.log(data))
-    //   .catch(error => console.error(error));
-
-    // fetchReviews(842945)
-    //   .then(data => console.log(data))
-    //   .catch(error => console.error(error));
   }, []);
 
   return (
@@ -45,5 +28,4 @@ const Home = () => {
 
 export default Home;
 
-//55908c20a8c5b517b5247533a2b5c98b
 //https://api.themoviedb.org/3/movie/550?api_key=55908c20a8c5b517b5247533a2b5c98b

@@ -1,4 +1,4 @@
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import MovieInfo from 'components/MovieInfo/MovieInfo';
 import MovieAddInfo from 'components/MovieAddInfo/MovieAddInfo';
@@ -15,6 +15,9 @@ const MovieDetails = () => {
   const [poster, setPocter] = useState('');
   const [score, setScore] = useState(0);
   const { movieId } = useParams();
+  const location = useLocation();
+
+  console.log(location.state);
 
   useEffect(() => {
     fetchDetails(movieId)
@@ -40,7 +43,7 @@ const MovieDetails = () => {
 
   return (
     <main>
-      <Link to="/">Go back</Link>
+      <Link to={location.state.from}>Go back</Link>
       <MovieInfo
         title={title}
         overview={overview}
