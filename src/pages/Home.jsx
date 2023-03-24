@@ -1,12 +1,16 @@
 import { useState, useEffect } from 'react';
 import { fetchTrending } from 'services/fetchDateAboutMovies';
 import MoviesList from 'components/MoviesList/Movieslist';
+import ErrorMessage from 'components/ErrorMessage';
 
 const Home = () => {
   const [titlesMovie, setTitlesMovie] = useState([]);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetchTrending('movie', 'day')
+    const controller = new AbortController();
+
+    fetchTrending('movie', 'day', controller)
       .then(data => {
         setTitlesMovie([
           ...data.results.map(({ id, title }) => ({
@@ -15,13 +19,23 @@ const Home = () => {
           })),
         ]);
       })
-      .catch(error => console.log(error));
+      .catch(error => setError(error.message));
+
+    return () => {
+      controller.abort();
+    };
   }, []);
 
   return (
     <main>
-      <h1>Trending today</h1>
-      <MoviesList arrMovies={titlesMovie} />
+      <h1 style={{ fontSize: '1.8 em', opacity: '0.8', marginLeft: '10px' }}>
+        Trending today
+      </h1>
+      {!error ? (
+        <MoviesList arrMovies={titlesMovie} />
+      ) : (
+        <ErrorMessage>{error}</ErrorMessage>
+      )}
     </main>
   );
 };

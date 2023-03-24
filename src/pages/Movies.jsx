@@ -3,10 +3,12 @@ import { useState, useEffect, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import { fetchSearch } from 'services/fetchDateAboutMovies';
 import MoviesList from 'components/MoviesList/Movieslist';
+import ErrorMessage from 'components/ErrorMessage';
 
 const Movies = () => {
   const [listFoundMovie, setFoundMovie] = useState([]);
   const [serchParams, setSearchParams] = useSearchParams();
+  const [error, setError] = useState(null);
 
   const namemovie = useMemo(
     () => serchParams.get('query') ?? '',
@@ -25,7 +27,7 @@ const Movies = () => {
           }))
         );
       })
-      .catch(error => console.error(error));
+      .catch(error => setError(error.message));
   }, [namemovie]);
 
   const handleNameMovie = name => setSearchParams({ query: name });
@@ -33,7 +35,11 @@ const Movies = () => {
   return (
     <main>
       <Searchform onSearch={handleNameMovie} />
-      {namemovie !== '' && <MoviesList arrMovies={listFoundMovie} />}
+      {!error && namemovie !== '' ? (
+        <MoviesList arrMovies={listFoundMovie} />
+      ) : (
+        <ErrorMessage>{error}</ErrorMessage>
+      )}
     </main>
   );
 };

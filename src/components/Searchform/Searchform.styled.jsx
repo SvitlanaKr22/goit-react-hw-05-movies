@@ -2,20 +2,12 @@ import styled from 'styled-components';
 import { Form as FormikForm } from 'formik';
 import { Field as FormikField } from 'formik';
 import { ErrorMessage as FormikErrorMessage } from 'formik';
-//import { BiSearch as ReactIcon } from 'react-icons/bi';
-
-// export const BiSearch = styled(ReactIcon)`
-//   display: inline-block;
-//   width: 24px;
-//   height: 24px;
-//   overflow: hidden;
-// `;
 
 export const Form = styled(FormikForm)`
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
   width: 100%;
   max-width: 600px;
   background-color: #fff;
@@ -25,19 +17,19 @@ export const Form = styled(FormikForm)`
 
 export const Field = styled(FormikField)`
   display: block;
-  width: 90%;
-  height: calc(2.25rem + 2px);
-  padding: 0.375rem 0.75rem;
+  width: 99%;
+  /* height: calc(2.25rem + 2px); */
+  padding: 0.5rem 0.5rem;
   font-family: inherit;
-  font-size: 1rem;
+  font-size: inherit;
   font-weight: 400;
   line-height: 1.5;
   color: #212529;
   background-color: #fff;
   background-clip: padding-box;
-  /* padding-box – указывает, что фон (фоновое изображение) нужно рисовать только до внешнего края отступа (под границей не выводить); */
+
   border: 1px solid #bdbdbd;
-  /* устанавливает границу, у которой: 1px (толщина), solid (тип линии) и #bdbdbd (цвет); */
+
   border-radius: 0.25rem;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 
@@ -62,32 +54,16 @@ export const ErrorMessage = styled(FormikErrorMessage)`
 `;
 
 export const ButtonForm = styled.button`
-  /* сброс стилей */
-  padding: 0;
-  border: none;
   font: inherit;
-  color: inherit;
-  background-color: transparent;
   cursor: pointer;
-
-  /* переопределение стилей для ссылок */
   display: inline-block;
   text-align: center;
-  text-decoration: none;
-
-  /* небольшие вертикальные отступы */
   margin: 2px 0;
-
-  /* невидимая рамка */
   border: solid 1px transparent;
   border-radius: 4px;
-
-  /* для установки размеров используем паддинги */
-  padding: 0.5em 1em;
-
-  /* контрастные цвета */
+  padding: 0.6rem 1.5rem;
   color: #ffffff;
-  background-color: #9555af;
+  background-color: #0a64a0;
 
   &:active {
     transform: translateY(1px);
@@ -96,7 +72,7 @@ export const ButtonForm = styled.button`
 
   &:hover,
   &:focus {
-    color: #9555af;
+    color: #0a64a0;
     border-color: currentColor;
     background-color: white;
   }

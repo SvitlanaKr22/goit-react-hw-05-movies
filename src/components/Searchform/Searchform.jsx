@@ -1,11 +1,5 @@
 import { Formik } from 'formik';
-import {
-  Form,
-  ButtonForm,
-  Field,
-  ErrorMessage,
-  // BiSearch,
-} from './Searchform.styled';
+import { Form, ButtonForm, Field, ErrorMessage } from './Searchform.styled';
 import * as Yup from 'yup';
 
 const SignupSchema = Yup.object().shape({

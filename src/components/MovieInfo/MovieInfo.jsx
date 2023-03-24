@@ -1,6 +1,8 @@
+import PropTypes from 'prop-types';
+import { DivInfo } from './MovieInfo.styled';
 const MovieInfo = ({ image, title, score, overview, genres, year }) => {
   return (
-    <div>
+    <DivInfo>
       <img src={image} alt="movie's poster"></img>
       <div>
         <h2>
@@ -12,7 +14,16 @@ const MovieInfo = ({ image, title, score, overview, genres, year }) => {
         <h3>Genres</h3>
         <p>{genres}</p>
       </div>
-    </div>
+    </DivInfo>
   );
 };
 export default MovieInfo;
+
+MovieInfo.propTypes = {
+  image: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  score: PropTypes.number.isRequired,
+  overview: PropTypes.string.isRequired,
+  genres: PropTypes.string.isRequired,
+  year: PropTypes.string.isRequired,
+};

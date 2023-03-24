@@ -1,17 +1,22 @@
-import { Link, Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
+import { Link, Header, List } from './MovieAddInfo.styled';
+
 const MovieAddInfo = () => {
   return (
     <div>
-      <h3>Additional information</h3>
-      <ul>
+      <Header>Additional information</Header>
+      <List>
         <li>
           <Link to="cast">Cast</Link>
         </li>
         <li>
           <Link to="reviews">Reviews</Link>
         </li>
-      </ul>
-      <Outlet />
+      </List>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
